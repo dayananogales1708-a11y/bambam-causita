@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#1389db">
-<title>BAMBAM CAUSITA V11 Iconos 3D</title>
+<title>BAMBAM CAUSITA</title>
 <style>
 :root{
   --deep:#075aa9;
@@ -2508,6 +2508,9 @@ input,
 }
 </style>
 
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icon-192.png" sizes="192x192">
+<link rel="apple-touch-icon" href="./icon-192.png">
 </head>
 <body>
 
@@ -2613,9 +2616,37 @@ const FULL_PREVIEW=Array.from({length:25},(_,i)=>i).filter(i=>i!==CENTER);
 const DEFAULT_PATTERNS=(function(){
   const row = r => Array.from({length:5},(_,c)=>r*5+c);
   const allowedRows=[0,1,3,4];
+
+  // Combinaciones dentro de una fila.
+  // TERNA: cualquier 3 de los 5 números, juntos o separados.
+  // CUATERNA: cualquier 4 de los 5 números, juntos o separados.
+  // La fila central (r=2) queda excluida.
+  const combinations=(arr,k)=>{
+    const out=[];
+    const walk=(start,pick)=>{
+      if(pick.length===k){out.push([...pick]);return;}
+      for(let i=start;i<arr.length;i++){
+        pick.push(arr[i]);
+        walk(i+1,pick);
+        pick.pop();
+      }
+    };
+    walk(0,[]);
+    return out;
+  };
+
+  const ternaVariants=[];
+  const cuaternaVariants=[];
+  allowedRows.forEach(r=>{
+    ternaVariants.push(...combinations(row(r),3));
+    cuaternaVariants.push(...combinations(row(r),4));
+  });
+
   const pairVariants=[];
   for(let i=0;i<allowedRows.length;i++) for(let j=i+1;j<allowedRows.length;j++) pairVariants.push([...row(allowedRows[i]),...row(allowedRows[j])]);
   return [
+    {id:"terna",name:"TERNA",mode:"variants",variants:ternaVariants,preview:[0,2,4]},
+    {id:"cuaterna",name:"CUATERNA",mode:"variants",variants:cuaternaVariants,preview:[0,1,3,4]},
     {id:"linea_h",name:"LINEA H.",mode:"variants",variants:allowedRows.map(row),preview:row(0)},
     {id:"fiesta",name:"FIESTA",mode:"count",count:10,preview:[0,1,2,3,4,5,6,7,8,9]},
     {id:"brinco",name:"BRINCO",mode:"variants",variants:[[15,17,19,20,22,24]],preview:[15,17,19,20,22,24]},
@@ -2647,7 +2678,9 @@ const state={
   justMarkedNumber:null,
   prevWinningCards:[],
   newlyWinningCards:[],
-  prevPatternWinners:{}
+  prevPatternWinners:{},
+  lockedFullWinner:null,
+  lockedConsueloWinner:null
 };
 
 const $=s=>document.querySelector(s);
@@ -2784,7 +2817,7 @@ function undoBall(){
 }
 function resetGame(){
   if(!confirm("¿Reiniciar todas las bolas cantadas?"))return;
-  state.called.clear();state.history=[];state.lastWinSignature="";state.patternState={};state.justTouchedBall=null;state.justMarkedNumber=null;state.prevWinningCards=[];state.newlyWinningCards=[];state.prevPatternWinners={};
+  state.called.clear();state.history=[];state.lastWinSignature="";state.patternState={};state.justTouchedBall=null;state.justMarkedNumber=null;state.prevWinningCards=[];state.newlyWinningCards=[];state.prevPatternWinners={};state.lockedFullWinner=null;state.lockedConsueloWinner=null;
   renderBalls();refreshPatternsAndCards();toast("Juego reiniciado");
 }
 
@@ -2840,18 +2873,44 @@ function updateWinnerHistory(status,current){
 function computePatternStatuses(){
   const active=state.patterns.filter(p=>!state.hidden.has(p.id));
   const fullMatches=state.selected.filter(id=>hitCountForCard(CARD_DATA[id])===24);
+
+  // Guardamos el orden en que los cartones completan sus 24 números.
   const fullStatus=updateWinnerHistory(ensurePatternStatus("__full__"),fullMatches);
+  const completionOrder=Array.isArray(fullStatus.history)?fullStatus.history.slice():[];
+
+  // Primer cartón completo: queda bloqueado como CARTON LLENO.
+  if(state.lockedFullWinner==null){
+    const first=completionOrder.find(id=>id!=null);
+    if(first!=null) state.lockedFullWinner=first;
+  }
+
+  // Segundo cartón completo distinto: queda bloqueado como CONSUELO.
+  if(state.lockedConsueloWinner==null && state.lockedFullWinner!=null){
+    const second=completionOrder.find(id=>id!=null && id!==state.lockedFullWinner);
+    if(second!=null) state.lockedConsueloWinner=second;
+  }
+
   active.forEach(p=>{
     const status=ensurePatternStatus(p.id);
-    if((p.mode||"variants")==="consuelo"){
+    const mode=p.mode||"variants";
+
+    if(mode==="full"){
       status.prevMatches=fullMatches.slice();
       status.currentMatches=fullMatches.slice();
-      const orderedCurrent=(fullStatus.history||[]).filter(id=>fullMatches.includes(id));
-      status.currentWinner=orderedCurrent.length>=2?orderedCurrent[orderedCurrent.length-2]:null;
+      status.currentWinner=state.lockedFullWinner;
+      status.history=state.lockedFullWinner!=null?[state.lockedFullWinner]:[];
       return;
     }
-    const current=(p.mode||"variants")==="full"?fullMatches:matchingCardsForPattern(p);
-    updateWinnerHistory(status,current);
+
+    if(mode==="consuelo"){
+      status.prevMatches=fullMatches.slice();
+      status.currentMatches=fullMatches.slice();
+      status.currentWinner=state.lockedConsueloWinner;
+      status.history=state.lockedConsueloWinner!=null?[state.lockedConsueloWinner]:[];
+      return;
+    }
+
+    updateWinnerHistory(status,matchingCardsForPattern(p));
   });
 }
 function winnersForPattern(p){
@@ -2936,6 +2995,25 @@ function getPatternIcon(p){
   const name=(p?.name||"").toUpperCase();
   const svg=(body)=>`<svg viewBox="0 0 64 56" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">${body}</svg>`;
 
+  if(id==="terna" || name==="TERNA"){
+    return svg(`
+      <defs><linearGradient id="te" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#F26868"/><stop offset=".52" stop-color="#C43636"/><stop offset="1" stop-color="#8F2020"/></linearGradient></defs>
+      <rect x="5" y="19" width="15" height="18" rx="5" fill="url(#te)" stroke="#7D1C1C" stroke-width="1.7"/>
+      <rect x="25" y="19" width="15" height="18" rx="5" fill="url(#te)" stroke="#7D1C1C" stroke-width="1.7"/>
+      <rect x="45" y="19" width="15" height="18" rx="5" fill="url(#te)" stroke="#7D1C1C" stroke-width="1.7"/>
+      <path d="M9 23h7M29 23h7M49 23h7" stroke="#FFC2C2" stroke-width="2.2" stroke-linecap="round" opacity=".9"/>
+    `);
+  }
+  if(id==="cuaterna" || name==="CUATERNA"){
+    return svg(`
+      <defs><linearGradient id="cu" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#F56C6C"/><stop offset=".5" stop-color="#BB3030"/><stop offset="1" stop-color="#7F1D1D"/></linearGradient></defs>
+      <rect x="3" y="20" width="12" height="17" rx="4" fill="url(#cu)" stroke="#741A1A" stroke-width="1.5"/>
+      <rect x="18" y="20" width="12" height="17" rx="4" fill="url(#cu)" stroke="#741A1A" stroke-width="1.5"/>
+      <rect x="33" y="20" width="12" height="17" rx="4" fill="url(#cu)" stroke="#741A1A" stroke-width="1.5"/>
+      <rect x="48" y="20" width="12" height="17" rx="4" fill="url(#cu)" stroke="#741A1A" stroke-width="1.5"/>
+      <path d="M6 24h6M21 24h6M36 24h6M51 24h6" stroke="#FFC7C7" stroke-width="2" stroke-linecap="round" opacity=".9"/>
+    `);
+  }
   if(id==="linea_h" || (name.includes("LINEA H") && !name.includes("DOBLE"))){
     return svg(`
       <defs><linearGradient id="lh" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#58E7FF"/><stop offset=".52" stop-color="#15A9E8"/><stop offset="1" stop-color="#0873BE"/></linearGradient></defs>
@@ -3213,6 +3291,15 @@ window.__BAMBAM_DATASET_VERSION__="PDF-3000-V25";
 <script id="v38-build-marker">window.__BAMBAM_BUILD__="V38_FIGURAS_QUITADAS_COMPACTAS";</script>
 <script id="v39-build-marker">window.__BAMBAM_BUILD__="V39_BRILLO_BOLA_RECIENTE";</script>
 <script id="v40-build-marker">window.__BAMBAM_BUILD__="V40_REBOTE_AL_MARCAR";</script>
+<script id="v41-build-marker">window.__BAMBAM_BUILD__="V41_LLENO_CONSUELO_TERNA_CUATERNA";</script>
+
+<script id="bambam-v41-sw-register">
+if("serviceWorker" in navigator){
+  window.addEventListener("load",()=>{
+    navigator.serviceWorker.register("./sw.js").catch(()=>{});
+  });
+}
+</script>
 </body>
 </html>
 <style>
