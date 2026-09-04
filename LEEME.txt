@@ -1,12 +1,14 @@
-BAMBAM CAUSITA V41
+BAMBAM CAUSITA · V43_LLENO_CONSUELO_POR_ORDEN
 
-Actualización:
-- Se conservan exactamente los 3000 cartones originales reconstruidos desde CARTONES.CAUSITA.pdf.
-- CARTÓN LLENO: el primer cartón que completa sus 24 números queda fijo.
-- CONSUELO: el segundo cartón distinto que completa sus 24 números queda fijo.
-- Ningún cartón lleno posterior reemplaza LLENO ni CONSUELO.
-- Ambos premios se liberan solamente con Reiniciar Juego.
-- TERNA: cualquier 3 números marcados de una misma fila horizontal válida, juntos o separados.
-- CUATERNA: cualquier 4 números marcados de una misma fila horizontal válida, juntos o separados.
-- TERNA y CUATERNA solo cuentan filas 1, 2, 4 y 5; la fila central no cuenta.
-- Se conserva el diseño rojo/blanco y las animaciones de la V40.
+CORRECCIÓN DE CARTÓN LLENO Y CONSUELO
+
+- Se conserva el orden en que los cartones completaron sus 24 números.
+- El primer cartón que SIGA lleno aparece en CARTÓN LLENO.
+- El segundo cartón que SIGA lleno aparece en CONSUELO.
+- Si el ganador de LLENO pierde una bola, el segundo sube automáticamente a LLENO.
+- Si existe un tercero que siga lleno, éste sube automáticamente a CONSUELO.
+- Si varios cartones pierden el lleno por la misma bola, se buscan los siguientes cartones completos en orden.
+- Si un cartón deja de estar lleno y después vuelve a completar sus 24 números, su nueva finalización pasa al final del orden.
+- Nunca se usa el mismo cartón para LLENO y CONSUELO.
+
+Se conservan TERNA, CUATERNA, las demás figuras, el diseño y los cartones propios de esta aplicación.

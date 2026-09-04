@@ -1,12 +1,5 @@
-const CACHE='bambam-causita-v41-lleno-consuelo-terna-cuaterna';
-const CORE=[
-  './',
-  './index.html',
-  './manifest.webmanifest',
-  './icon-192.png',
-  './icon-512.png',
-  './mascot.png'
-];
+const CACHE='bambam-causita-v43-lleno-consuelo-por-orden';
+const CORE=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png','./mascot.png'];
 
 self.addEventListener('install',event=>{
   self.skipWaiting();
@@ -16,9 +9,7 @@ self.addEventListener('install',event=>{
 self.addEventListener('activate',event=>{
   event.waitUntil(
     caches.keys().then(keys=>Promise.all(
-      keys
-        .filter(key=>key.startsWith('bambam-causita-') && key!==CACHE)
-        .map(key=>caches.delete(key))
+      keys.filter(key=>key!==CACHE).map(key=>caches.delete(key))
     )).then(()=>self.clients.claim())
   );
 });
@@ -26,7 +17,6 @@ self.addEventListener('activate',event=>{
 self.addEventListener('fetch',event=>{
   const req=event.request;
   if(req.method!=='GET') return;
-
   if(req.mode==='navigate'){
     event.respondWith(
       fetch(req,{cache:'no-store'})
@@ -39,7 +29,6 @@ self.addEventListener('fetch',event=>{
     );
     return;
   }
-
   event.respondWith(
     caches.match(req).then(cached=>{
       const network=fetch(req).then(res=>{

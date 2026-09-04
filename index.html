@@ -2874,21 +2874,25 @@ function computePatternStatuses(){
   const active=state.patterns.filter(p=>!state.hidden.has(p.id));
   const fullMatches=state.selected.filter(id=>hitCountForCard(CARD_DATA[id])===24);
 
-  // Guardamos el orden en que los cartones completan sus 24 números.
-  const fullStatus=updateWinnerHistory(ensurePatternStatus("__full__"),fullMatches);
-  const completionOrder=Array.isArray(fullStatus.history)?fullStatus.history.slice():[];
+  // Registrar el orden REAL en que cada cartón va completando sus 24 números.
+  // Si un cartón deja de estar lleno y más tarde vuelve a completarse,
+  // su nueva finalización pasa al final del orden.
+  const fullStatus=ensurePatternStatus("__full__");
+  updateWinnerHistory(fullStatus,fullMatches);
 
-  // Primer cartón completo: queda bloqueado como CARTON LLENO.
-  if(state.lockedFullWinner==null){
-    const first=completionOrder.find(id=>id!=null);
-    if(first!=null) state.lockedFullWinner=first;
-  }
+  // Mantener únicamente los cartones que AHORA MISMO siguen completos,
+  // respetando el orden cronológico de finalización.
+  const completionOrder=(Array.isArray(fullStatus.history)?fullStatus.history:[])
+    .filter(id=>fullMatches.includes(id));
 
-  // Segundo cartón completo distinto: queda bloqueado como CONSUELO.
-  if(state.lockedConsueloWinner==null && state.lockedFullWinner!=null){
-    const second=completionOrder.find(id=>id!=null && id!==state.lockedFullWinner);
-    if(second!=null) state.lockedConsueloWinner=second;
-  }
+  // Regla:
+  // 1.º cartón completo vigente = CARTÓN LLENO
+  // 2.º cartón completo vigente = CONSUELO
+  //
+  // Si el primero pierde una bola, el segundo sube automáticamente a LLENO
+  // y el tercero (si existe) sube a CONSUELO.
+  state.lockedFullWinner=completionOrder.length>=1?completionOrder[0]:null;
+  state.lockedConsueloWinner=completionOrder.length>=2?completionOrder[1]:null;
 
   active.forEach(p=>{
     const status=ensurePatternStatus(p.id);
@@ -3275,25 +3279,9 @@ window.__BAMBAM_DATASET_VERSION__="PDF-3000-V25";
 </script>
 
 
-<script id="v26-build-marker">window.__BAMBAM_BUILD__="V26_ANIMACION_BOLILLERO";</script>
+<script id="v43-build-marker">window.__APP_BUILD__="V43_LLENO_CONSUELO_POR_ORDEN";</script>
 
-<script id="v27-build-marker">window.__BAMBAM_BUILD__="V27_BOTONES_ANIMADOS";</script>
-<script id="v28-build-marker">window.__BAMBAM_BUILD__="V28_SIN_TEXTO_MIS_FIGURAS";</script>
-<script id="v29-build-marker">window.__BAMBAM_BUILD__="V29_AZUL_Y_BLANCO";</script>
-<script id="v30-build-marker">window.__BAMBAM_BUILD__="V30_MORADO_Y_BLANCO";</script>
-<script id="v31-build-marker">window.__BAMBAM_BUILD__="V31_ROJO_Y_BLANCO";</script>
-<script id="v32-build-marker">window.__BAMBAM_BUILD__="V32_ROJO_Y_BLANCO_CARTONES_CORREGIDOS";</script>
-<script id="v33-build-marker">window.__BAMBAM_BUILD__="V33_FIGURAS_BLANCO_CABECERA_ROJA";</script>
-<script id="v34-build-marker">window.__BAMBAM_BUILD__="V34_BLANCO_PURO_FIGURAS_AMARILLAS";</script>
-<script id="v35-build-marker">window.__BAMBAM_BUILD__="V35_MARCADOS_ROJO_SUAVE";</script>
-<script id="v36-build-marker">window.__BAMBAM_BUILD__="V36_FIGURAS_AMARILLO_SUAVE_Y_MARCADOS_FUERTES";</script>
-<script id="v37-build-marker">window.__BAMBAM_BUILD__="V37_SIN_MANCHA_BLANCA";</script>
-<script id="v38-build-marker">window.__BAMBAM_BUILD__="V38_FIGURAS_QUITADAS_COMPACTAS";</script>
-<script id="v39-build-marker">window.__BAMBAM_BUILD__="V39_BRILLO_BOLA_RECIENTE";</script>
-<script id="v40-build-marker">window.__BAMBAM_BUILD__="V40_REBOTE_AL_MARCAR";</script>
-<script id="v41-build-marker">window.__BAMBAM_BUILD__="V41_LLENO_CONSUELO_TERNA_CUATERNA";</script>
-
-<script id="bambam-v41-sw-register">
+<script>
 if("serviceWorker" in navigator){
   window.addEventListener("load",()=>{
     navigator.serviceWorker.register("./sw.js").catch(()=>{});
