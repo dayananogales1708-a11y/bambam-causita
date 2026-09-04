@@ -1,0 +1,36 @@
+BAMBAM CAUSITA V25 - CARTONES RECONSTRUIDOS DESDE PDF
+
+Fuente: CARTONES.CAUSITA.pdf
+Páginas/cartones: 3000
+Centro: libre
+Validación: 24 números por cartón, sin repetidos y rangos B/I/N/G/O correctos.
+También se eliminan cachés anteriores de la PWA para evitar datos viejos.
+SHA-256 del PDF usado: 6e3cd8482d4ae976c24dce50a0c679e8ed3313b4854d31deab55f42f48786064
+
+V26: se añadió/ajustó animación sutil en las bolas del bolillero al tocarlas (rebote suave + irradiación exterior).
+
+V27: animación táctil sutil en botones (pequeña compresión y retorno suave).
+
+V28: se eliminó el texto bajo “Mis figuras” y se compactó esa cabecera para ahorrar espacio.
+
+V29: mismo diseño y acomodo, cambiando la gama celeste/turquesa por azul intenso, conservando el blanco.
+
+V30: nueva paleta morado + blanco. Las bolas ya marcadas anteriores ahora tienen un tono más fuerte y menos claro.
+
+V31: nueva paleta rojo + blanco, con estilo más fuerte/masculino. También se cambiaron los colores de los cartones y las bolas anteriores marcadas ya no son claras.
+
+V32: cartones ya no usan celeste; ahora siguen la gama rojo/blanco. Tanto cartones como figuras ya no muestran borde rojo al hacer bingo; solo una luz amarilla sutil.
+
+V33: área de figuras en blanco puro sin degradado rojizo. La cabecera #cartón | Aciertos ahora es rojo más fuerte con texto blanco. Los bingos mantienen solo un brillo amarillo suave, sin borde rojo.
+
+V34: se eliminaron degradados rojizos de todas las zonas blancas. Las figuras permanecen blancas hasta hacer bingo; al salir, pasan a amarillo suave y quedan así. El rojo se conserva solo en elementos fuertes.
+
+V35: los números marcados del cartón ya no usan amarillo; ahora usan rojo suave elegante.
+
+V36: figura ganadora con amarillo suave mezclado con blanco; números marcados del cartón con color más fuerte.
+
+V38: área de Figuras quitadas compactada, con chips más bajos, texto/botón más pequeños y más elementos por fila.
+
+V39: restaurado el brillo/halo exterior de la bola dorada recién tocada; rebota y emite luz al marcarse. Las bolas anteriores siguen rojas.
+
+V40: la bola rebota desde el primer toque al marcarse y mantiene el halo dorado exterior de la bola reciente.

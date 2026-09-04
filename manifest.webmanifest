@@ -1,0 +1,24 @@
+{
+  "name": "BAMBAM CAUSITA",
+  "short_name": "BAMBAM CAUSITA",
+  "description": "BAMBAM CAUSITA con iconos SVG 3D sin sombras y patrón editable.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#e8faff",
+  "theme_color": "#1389db",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
