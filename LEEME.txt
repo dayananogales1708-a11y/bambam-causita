@@ -1,10 +1,1 @@
-BAMBAM CAUSITA V58 - ACTUALIZACIÓN COMPLETA
-
-Incluye:
-- Panel En espera por delante de Mis cartones.
-- Botones En espera y + Nuevo patrón en la misma fila.
-- Corazones rosados para todas las figuras editables creadas con Nuevo patrón.
-- Nuevo icono rojo de la aplicación.
-- Service worker actualizado para evitar que quede visible una versión vieja en caché.
-
-Para GitHub: sube y reemplaza los 7 archivos de esta carpeta.
+BAMBAM CAUSITA V58 - iconos de figuras con carga universal. Subir los 7 archivos juntos a GitHub Pages y hacer Commit changes.
