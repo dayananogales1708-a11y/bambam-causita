@@ -1,9 +1,10 @@
-BAMBAM CAUSITA — V58 con imágenes corregidas
+BAMBAM CAUSITA V58 - ACTUALIZACIÓN COMPLETA
 
-- mascot.png = carita con fondo blanco (se ve dentro del encabezado de la app)
-- icon-192.png e icon-512.png = carita con fondo rojo (icono de la app instalada)
-- index.html = app V58
-- manifest.webmanifest = configuración PWA
-- sw.js = caché actualizado
+Incluye:
+- Panel En espera por delante de Mis cartones.
+- Botones En espera y + Nuevo patrón en la misma fila.
+- Corazones rosados para todas las figuras editables creadas con Nuevo patrón.
+- Nuevo icono rojo de la aplicación.
+- Service worker actualizado para evitar que quede visible una versión vieja en caché.
 
-Para GitHub: sube los 6 archivos de esta carpeta a la raíz del repositorio bambam-causita y confirma el commit.
+Para GitHub: sube y reemplaza los 7 archivos de esta carpeta.
