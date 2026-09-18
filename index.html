@@ -2811,7 +2811,247 @@ input,
 }
 </style>
 
-<!-- BUILD: V58_ICONOS_APP_CORREGIDOS -->
+<!-- BUILD: V58_ESPERA_DELANTE_CARTONES -->
+
+<style id="v58-waiting-popover-compact">
+/* Figuras quitadas pasan a un botón compacto junto a Nuevo patrón. */
+.compact-figures-head{
+  position:relative !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:space-between !important;
+  gap:6px !important;
+  flex-wrap:nowrap !important;
+  margin-bottom:5px !important;
+}
+.compact-figures-head > div:first-child{
+  flex:0 0 auto !important;
+  min-width:0 !important;
+}
+.pattern-head-actions{
+  position:relative !important;
+  display:flex !important;
+  flex-direction:row !important;
+  align-items:center !important;
+  justify-content:flex-end !important;
+  gap:5px !important;
+  flex-wrap:nowrap !important;
+  margin-left:auto !important;
+}
+.waiting-toggle,.new-pattern-btn{
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  min-height:32px !important;
+  height:32px !important;
+  padding:0 9px !important;
+  border-radius:10px !important;
+  font-size:9px !important;
+  line-height:1 !important;
+  font-weight:900 !important;
+  white-space:nowrap !important;
+}
+.waiting-toggle{
+  gap:5px !important;
+  text-transform:none !important;
+  letter-spacing:0 !important;
+}
+.waiting-label{
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  line-height:1 !important;
+  font:inherit !important;
+  font-weight:inherit !important;
+  white-space:nowrap !important;
+}
+.waiting-toggle{
+  background:linear-gradient(180deg,#C62A2A,#A91E24) !important;
+}
+.waiting-count{
+  display:inline-grid !important;
+  place-items:center !important;
+  min-width:16px !important;
+  height:16px !important;
+  padding:0 4px !important;
+  margin-left:3px !important;
+  border-radius:999px !important;
+  background:rgba(255,255,255,.18) !important;
+  color:#fff !important;
+  font-size:8px !important;
+  font-weight:950 !important;
+}
+.waiting-popover{
+  position:absolute !important;
+  top:calc(100% + 6px) !important;
+  right:0 !important;
+  width:min(330px,92vw) !important;
+  max-height:245px !important;
+  overflow:auto !important;
+  z-index:9999 !important;
+  padding:7px !important;
+  border-radius:12px !important;
+  background:#fff !important;
+  border:1px solid #E7D6D6 !important;
+  box-shadow:0 12px 28px rgba(70,20,20,.22) !important;
+}
+.waiting-popover[hidden]{display:none !important;}
+.waiting-popover-head{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:space-between !important;
+  gap:6px !important;
+  margin-bottom:5px !important;
+  padding:0 1px 4px !important;
+  border-bottom:1px solid #F0E1E1 !important;
+  color:#6D2424 !important;
+  font-size:10px !important;
+}
+.waiting-close{
+  width:22px !important;
+  height:22px !important;
+  border:0 !important;
+  border-radius:50% !important;
+  background:#FCEDEE !important;
+  color:#B22634 !important;
+  font-weight:950 !important;
+  line-height:1 !important;
+}
+.waiting-list{
+  display:grid !important;
+  grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  gap:4px !important;
+  margin:0 !important;
+}
+.waiting-list .removed-chip{
+  min-width:0 !important;
+  height:28px !important;
+  padding:2px 4px !important;
+  display:grid !important;
+  grid-template-columns:16px minmax(0,1fr) auto !important;
+  align-items:center !important;
+  gap:3px !important;
+  border-radius:999px !important;
+  background:#fff !important;
+  border:1px solid #D6EAF1 !important;
+  font-size:6.5px !important;
+  line-height:1 !important;
+  overflow:hidden !important;
+}
+.waiting-list .removed-icon{
+  width:16px !important;
+  height:16px !important;
+  min-width:16px !important;
+  display:grid !important;
+  place-items:center !important;
+  overflow:visible !important;
+}
+.waiting-list .removed-chip > span:not(.removed-icon){
+  min-width:0 !important;
+  overflow:hidden !important;
+  text-overflow:ellipsis !important;
+  white-space:nowrap !important;
+  color:#622020 !important;
+  font-weight:800 !important;
+}
+.waiting-list .removed-chip button{
+  min-height:18px !important;
+  height:18px !important;
+  padding:0 5px !important;
+  border:0 !important;
+  border-radius:999px !important;
+  background:#FCEDEE !important;
+  color:#9B2323 !important;
+  font-size:5.5px !important;
+  font-weight:950 !important;
+  white-space:nowrap !important;
+}
+.waiting-list .helper{
+  grid-column:1/-1 !important;
+  padding:8px 4px !important;
+  text-align:center !important;
+  font-size:8px !important;
+}
+@media(max-width:430px){
+  .compact-figures-head h2{font-size:18px !important;}
+  .pattern-head-actions{gap:4px !important;}
+  .waiting-toggle,.new-pattern-btn{
+    height:30px !important;
+    min-height:30px !important;
+    padding:0 7px !important;
+    font-size:8px !important;
+    border-radius:9px !important;
+  }
+  .waiting-toggle{max-width:105px !important;}
+  .new-pattern-btn{max-width:112px !important;}
+  .waiting-popover{width:min(310px,94vw) !important;max-height:230px !important;}
+  .waiting-list{grid-template-columns:repeat(2,minmax(0,1fr)) !important;}
+}
+</style>
+
+
+<style id="v58-waiting-row-final">
+/* Fuerza los dos botones de Mis figuras a estar en una sola fila */
+.pattern-head.compact-figures-head > .pattern-head-actions{
+  display:flex !important;
+  flex-direction:row !important;
+  align-items:center !important;
+  justify-content:flex-end !important;
+  flex-wrap:nowrap !important;
+  gap:6px !important;
+  width:auto !important;
+  max-width:none !important;
+}
+.pattern-head.compact-figures-head > .pattern-head-actions > .waiting-toggle,
+.pattern-head.compact-figures-head > .pattern-head-actions > .new-pattern-btn{
+  display:inline-flex !important;
+  flex:0 0 auto !important;
+  width:auto !important;
+  min-width:0 !important;
+  white-space:nowrap !important;
+}
+.waiting-toggle{
+  padding:0 10px !important;
+}
+.waiting-count{
+  margin-left:5px !important;
+}
+@media(max-width:430px){
+  .pattern-head.compact-figures-head > .pattern-head-actions{gap:4px !important;}
+  .pattern-head.compact-figures-head > .pattern-head-actions > .waiting-toggle{
+    padding:0 7px !important;
+    max-width:none !important;
+  }
+  .pattern-head.compact-figures-head > .pattern-head-actions > .new-pattern-btn{
+    padding:0 7px !important;
+    max-width:none !important;
+  }
+}
+</style>
+
+
+<style id="v58-waiting-popover-front-fix">
+/* El panel de En espera debe aparecer por DELANTE de Mis cartones. */
+#figuresPanel{
+  position:relative !important;
+  z-index:500 !important;
+  overflow:visible !important;
+}
+#figuresPanel .pattern-head,
+#figuresPanel .pattern-head-actions{
+  position:relative !important;
+  z-index:501 !important;
+  overflow:visible !important;
+}
+#figuresPanel .waiting-popover{
+  z-index:999999 !important;
+}
+#cardsPanel{
+  position:relative !important;
+  z-index:1 !important;
+}
+</style>
+
 </head>
 <body>
 
@@ -2846,18 +3086,24 @@ input,
     </div>
   </section>
 
-  <section class="panel glass">
-    <div class="pattern-head">
+  <section class="panel glass" id="figuresPanel">
+    <div class="pattern-head compact-figures-head">
       <div>
         <h2 style="margin-bottom:2px">🎯 Mis figuras</h2>
-        
       </div>
-      <button class="btn primary" onclick="newPattern()">＋ Nuevo patrón</button>
-    </div>
-
-    <div class="removed-box">
-      <b style="font-size:10px">Figuras quitadas</b>
-      <div id="removedList" class="removed-list"></div>
+      <div class="pattern-head-actions">
+        <button id="waitingToggle" class="btn primary waiting-toggle" type="button" onclick="toggleWaitingPopover(event)">
+          <span class="waiting-label">En espera</span><span id="waitingCount" class="waiting-count">0</span>
+        </button>
+        <button class="btn primary new-pattern-btn" onclick="newPattern()">＋ Nuevo patrón</button>
+        <div id="waitingPopover" class="waiting-popover" hidden>
+          <div class="waiting-popover-head">
+            <b>Figuras en espera</b>
+            <button type="button" class="waiting-close" onclick="closeWaitingPopover()">×</button>
+          </div>
+          <div id="removedList" class="removed-list waiting-list"></div>
+        </div>
+      </div>
     </div>
 
     <div id="patterns" class="patterns"></div>
@@ -3252,11 +3498,13 @@ function renderPatterns(){
   computePatternStatuses();
   const removed=$("#removedList");removed.innerHTML="";
   const hiddenPats=state.patterns.filter(p=>state.hidden.has(p.id));
-  if(!hiddenPats.length)removed.innerHTML='<span class="helper">No hay figuras quitadas.</span>';
+  const waitingCount=$("#waitingCount");
+  if(waitingCount) waitingCount.textContent=String(hiddenPats.length);
+  if(!hiddenPats.length)removed.innerHTML='<span class="helper">No hay figuras en espera.</span>';
   hiddenPats.forEach(p=>{
     const c=document.createElement("div");c.className="removed-chip";
     c.innerHTML=`<span class="removed-icon">${getPatternIcon(p)}</span><span>${esc(p.name)}</span>`;
-    const restore=document.createElement("button");restore.textContent="Volver a poner";restore.onclick=()=>restorePattern(p.id);
+    const restore=document.createElement("button");restore.textContent="Volver";restore.onclick=()=>restorePattern(p.id);
     c.appendChild(restore);removed.appendChild(c);
   });
 
@@ -3313,6 +3561,22 @@ function renderPatterns(){
     if(sig!==state.lastWinSignature){state.lastWinSignature=sig;toast("🏆 ¡BINGO detectado!")}
   }
 }
+function toggleWaitingPopover(ev){
+  if(ev) ev.stopPropagation();
+  const pop=$("#waitingPopover");
+  if(!pop) return;
+  pop.hidden=!pop.hidden;
+}
+function closeWaitingPopover(){
+  const pop=$("#waitingPopover");
+  if(pop) pop.hidden=true;
+}
+document.addEventListener("click",(ev)=>{
+  const pop=$("#waitingPopover"),btn=$("#waitingToggle");
+  if(!pop||pop.hidden) return;
+  if(pop.contains(ev.target)||btn?.contains(ev.target)) return;
+  pop.hidden=true;
+});
 function hidePattern(id){state.hidden.add(id);saveStored();renderPatterns();renderCards();toast("Figura quitada")}
 function restorePattern(id){state.hidden.delete(id);saveStored();renderPatterns();renderCards();toast("Figura activada")}
 
@@ -3799,6 +4063,18 @@ function getPatternIcon(p){
       <rect x="28" y="17" width="8" height="10" fill="url(#gr)"/>
       <path d="M31 17c-11 0-13-10-6-11 5 0 7 6 7 11M33 17c11 0 13-10 6-11-5 0-7 6-7 11" fill="none" stroke="#E51E35" stroke-width="5" stroke-linecap="round"/>
       <path d="M13 23h11" stroke="#FFF1A4" stroke-width="2.5" stroke-linecap="round" opacity=".8"/>
+    `);
+  }
+  if(id.startsWith("p_") || !(id || "").trim()){
+    return svg(`
+      <defs>
+        <radialGradient id="ch1" cx="35%" cy="28%"><stop stop-color="#FFD8EA"/><stop offset=".28" stop-color="#FF7AAF"/><stop offset=".68" stop-color="#F03572"/><stop offset="1" stop-color="#B90E50"/></radialGradient>
+        <filter id="chsh" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="2.5" stdDeviation="2" flood-color="#8C103F" flood-opacity=".28"/></filter>
+      </defs>
+      <g filter="url(#chsh)">
+        <path d="M32 49S9 36 9 19c0-9 11-14 18-7l5 6 5-6c7-7 18-2 18 7 0 17-23 30-23 30z" fill="url(#ch1)" stroke="#9D0B42" stroke-width="2.2"/>
+        <path d="M18 15c4-4 9-1 11 3" fill="none" stroke="#FFE7F1" stroke-width="3" stroke-linecap="round" opacity=".95"/>
+      </g>
     `);
   }
   return svg(`
