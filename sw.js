@@ -1,4 +1,4 @@
-const CACHE='bambam-v58-final-actualizacion-completa-20260918';
+const CACHE='bambam-v58-billetera-sirena-fix-20260918';
 const ASSETS=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png','./mascot.png'];
 
 self.addEventListener('install', event => {

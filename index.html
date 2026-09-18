@@ -2811,7 +2811,7 @@ input,
 }
 </style>
 
-<!-- BUILD: V58_ESPERA_DELANTE_CARTONES -->
+<!-- BUILD: V58_FINAL_ICONOS_BILLETERA_SIRENA_CORREGIDOS -->
 
 <style id="v58-waiting-popover-compact">
 /* Figuras quitadas pasan a un botón compacto junto a Nuevo patrón. */
@@ -3824,30 +3824,26 @@ function getPatternIcon(p){
 
   if(id==="billetera" || name==="BILLETERA"){
     return svg(`
-      <defs>
-        <linearGradient id="bil45" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#D8965C"/><stop offset=".5" stop-color="#9C542E"/><stop offset="1" stop-color="#5E2B19"/></linearGradient>
-        <filter id="bils45" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="3" stdDeviation="2" flood-color="#3B1B10" flood-opacity=".45"/></filter>
-      </defs>
-      <g filter="url(#bils45)">
-        <rect x="7" y="14" width="50" height="34" rx="8" fill="url(#bil45)" stroke="#4D2417" stroke-width="1.8"/>
-        <rect x="34" y="24" width="24" height="16" rx="5" fill="#7A3F25" stroke="#4D2417" stroke-width="1.3"/>
-        <circle cx="40" cy="32" r="2.3" fill="#E7B66F"/>
-        <path d="M12 18c10-4 28-4 39 0" stroke="#F2C293" stroke-width="2.6" stroke-linecap="round" opacity=".55"/>
+      <g>
+        <path d="M10 17C10 12 14 9 19 9h27c5 0 8 3 8 8v29c0 5-3 8-8 8H18c-5 0-8-3-8-8z" fill="#8F4A2B" stroke="#4F2415" stroke-width="2"/>
+        <path d="M12 19c7-5 28-6 39-1v9H12z" fill="#C47A48" opacity=".95"/>
+        <path d="M17 14h29c3 0 5 2 5 5v4H13v-2c0-4 1-6 4-7z" fill="#E2A36E"/>
+        <path d="M34 26h24v16c0 3-2 5-5 5H34z" fill="#6F351F" stroke="#4F2415" stroke-width="1.5"/>
+        <circle cx="42" cy="34" r="3.2" fill="#F3C164" stroke="#A66519" stroke-width="1.1"/>
+        <path d="M16 21h26" stroke="#FFD7B1" stroke-width="2.4" stroke-linecap="round" opacity=".8"/>
+        <path d="M14 47c8 3 27 3 37 0" stroke="#3F1D12" stroke-width="2" stroke-linecap="round" opacity=".5"/>
       </g>
     `);
   }
 
   if(id==="sirena" || name==="SIRENA"){
     return svg(`
-      <defs>
-        <linearGradient id="sir45" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#A3FFFF"/><stop offset=".42" stop-color="#26C7D8"/><stop offset="1" stop-color="#146C9E"/></linearGradient>
-        <linearGradient id="sir45b" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#C98CFF"/><stop offset=".55" stop-color="#8248D5"/><stop offset="1" stop-color="#51259E"/></linearGradient>
-        <filter id="sirs45" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="3" stdDeviation="2.2" flood-color="#174D65" flood-opacity=".38"/></filter>
-      </defs>
-      <g filter="url(#sirs45)" transform="rotate(-16 32 30)">
-        <path d="M17 8C31 15 39 26 38 39C37 47 30 52 24 48C18 44 21 36 25 31C29 25 26 17 17 8Z" fill="url(#sir45)" stroke="#176A82" stroke-width="1.6"/>
-        <path d="M24 46C15 43 9 46 7 52C14 54 21 53 26 49C30 54 37 55 44 51C41 45 35 43 27 46Z" fill="url(#sir45b)" stroke="#5A2B99" stroke-width="1.4"/>
-        <path d="M22 15c7 5 11 12 11 19" stroke="#CFFFFF" stroke-width="2.4" stroke-linecap="round" opacity=".75"/>
+      <g transform="rotate(-10 32 30)">
+        <path d="M18 7c12 7 21 17 22 29 1 8-4 14-10 15-7 1-11-5-8-12 6-7 8-13 3-20-2-4-5-8-7-12z" fill="#29C9D7" stroke="#127B91" stroke-width="2"/>
+        <path d="M23 18c5 4 8 10 9 16" fill="none" stroke="#BFFBFF" stroke-width="3" stroke-linecap="round" opacity=".95"/>
+        <path d="M28 48c-8-5-16-4-21 2 6 6 14 7 22 3 4 6 13 7 21 3-4-7-12-10-22-8z" fill="#8F4BD7" stroke="#5E2C9E" stroke-width="2"/>
+        <path d="M10 50c6 0 12 1 18 4M29 51c7 0 13 2 18 5" stroke="#DDBBFF" stroke-width="2" stroke-linecap="round" opacity=".8"/>
+        <path d="M31 36c2 3 3 6 2 9" fill="none" stroke="#0F6D82" stroke-width="2" stroke-linecap="round"/>
       </g>
     `);
   }
