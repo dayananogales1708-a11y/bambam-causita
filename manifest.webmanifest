@@ -1,11 +1,12 @@
 {
   "name": "BAMBAM CAUSITA",
   "short_name": "BAMBAM",
-  "start_url": "./index.html",
+  "description": "Control de cartones BAMBAM CAUSITA",
+  "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#B81F2B",
+  "theme_color": "#c41d22",
   "icons": [
     {
       "src": "./icon-192.png",

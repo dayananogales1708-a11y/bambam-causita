@@ -1,1 +1,14 @@
-BAMBAM CAUSITA V58 - iconos de figuras con carga universal. Subir los 7 archivos juntos a GitHub Pages y hacer Commit changes.
+BAMBAM CAUSITA - actualización con 2 figuras nuevas
+
+Archivos para subir a GitHub Pages:
+- index.html
+- manifest.webmanifest
+- sw.js
+- icon-192.png
+- icon-512.png
+- mascot.png
+
+Cambios incluidos:
+- Nueva figura: EL RENO
+- Nueva figura: LA CARRETERA
+- Se mantiene el sistema de iconos embebidos para que carguen bien en distintos celulares.

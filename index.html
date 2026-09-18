@@ -3232,6 +3232,8 @@ const DEFAULT_PATTERNS=(function(){
     {id:"pez_globo",name:"PEZ GLOBO",mode:"variants",variants:[[7,11,13,14,17]],preview:[7,11,13,14,17]},
     {id:"billetera",name:"BILLETERA",mode:"variants",variants:[[7,11,13,16,17,18]],preview:[7,11,13,16,17,18]},
     {id:"sirena",name:"SIRENA",mode:"variants",variants:[[7,8,10,13,15,16]],preview:[7,8,10,13,15,16]},
+    {id:"el_reno",name:"EL RENO",mode:"variants",variants:[[6,8,11,13,17]],preview:[6,8,11,13,17]},
+    {id:"la_carretera",name:"LA CARRETERA",mode:"variants",variants:[[3,8,11,13,16,21]],preview:[3,8,11,13,16,21]},
     {id:"el_martillo",name:"EL MARTILLO",mode:"variants",variants:[[2,6,10,18,24]],preview:[2,6,10,18,24]},
     {id:"cuernos",name:"CUERNOS",mode:"variants",variants:[[0,4,6,8]],preview:[0,4,6,8]},
     {id:"huellas",name:"HUELLAS",mode:"variants",variants:[[3,11,13,20]],preview:[3,11,13,20]},
@@ -3873,6 +3875,49 @@ function getPatternIcon(p){
         <path d="M28 48c-8-5-16-4-21 2 6 6 14 7 22 3 4 6 13 7 21 3-4-7-12-10-22-8z" fill="#8F4BD7" stroke="#5E2C9E" stroke-width="2"/>
         <path d="M10 50c6 0 12 1 18 4M29 51c7 0 13 2 18 5" stroke="#DDBBFF" stroke-width="2" stroke-linecap="round" opacity=".8"/>
         <path d="M31 36c2 3 3 6 2 9" fill="none" stroke="#0F6D82" stroke-width="2" stroke-linecap="round"/>
+      </g>
+    `);
+  }
+
+  if(id==="el_reno" || name==="EL RENO"){
+    return svg(`
+      <defs>
+        <radialGradient id="renoface" cx=".42" cy=".28"><stop stop-color="#FFD7A3"/><stop offset=".52" stop-color="#E39A49"/><stop offset="1" stop-color="#B66321"/></radialGradient>
+        <linearGradient id="renohorn" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#A66536"/><stop offset="1" stop-color="#6C3F1E"/></linearGradient>
+        <filter id="renosh" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="3" stdDeviation="2.1" flood-color="#5C3014" flood-opacity=".35"/></filter>
+      </defs>
+      <g filter="url(#renosh)">
+        <path d="M22 17l-5-8M20 17l-9-2M22 17l-8 6M42 17l5-8M44 17l9-2M42 17l8 6" fill="none" stroke="url(#renohorn)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        <ellipse cx="32" cy="32" rx="16" ry="14" fill="url(#renoface)" stroke="#9A5A25" stroke-width="1.8"/>
+        <ellipse cx="21" cy="24" rx="5" ry="7" fill="#D9863A" stroke="#9A5A25" stroke-width="1.4"/>
+        <ellipse cx="43" cy="24" rx="5" ry="7" fill="#D9863A" stroke="#9A5A25" stroke-width="1.4"/>
+        <circle cx="26" cy="31" r="2.2" fill="#2E1A10"/>
+        <circle cx="38" cy="31" r="2.2" fill="#2E1A10"/>
+        <ellipse cx="32" cy="38" rx="4.8" ry="3.8" fill="#F8C084" stroke="#B86F33" stroke-width="1"/>
+        <circle cx="30.5" cy="37.5" r="1" fill="#5F3118"/>
+        <circle cx="33.5" cy="37.5" r="1" fill="#5F3118"/>
+        <path d="M30.5 40c1.2 1 1.8 1.3 3 0" fill="none" stroke="#6A3418" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M22 22c3-2 6-3 10-3 5 0 8 1 10 3" fill="none" stroke="#FFE8C6" stroke-width="2" stroke-linecap="round" opacity=".65"/>
+      </g>
+    `);
+  }
+
+  if(id==="la_carretera" || name==="LA CARRETERA"){
+    return svg(`
+      <defs>
+        <linearGradient id="roadsky" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#BFF6FF"/><stop offset="1" stop-color="#77D6EC"/></linearGradient>
+        <linearGradient id="roadgrass" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#8CE76A"/><stop offset="1" stop-color="#2DAA3F"/></linearGradient>
+        <filter id="roadsh" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="3" stdDeviation="2" flood-color="#154E1F" flood-opacity=".28"/></filter>
+      </defs>
+      <g filter="url(#roadsh)">
+        <rect x="8" y="9" width="48" height="40" rx="8" fill="url(#roadsky)" stroke="#3A9AC0" stroke-width="1.5"/>
+        <path d="M8 37L20 24l12 13H8z" fill="url(#roadgrass)"/>
+        <path d="M56 37L44 24 32 37h24z" fill="url(#roadgrass)"/>
+        <path d="M15 48L32 16 49 48z" fill="#3C434F" stroke="#20252B" stroke-width="1.5"/>
+        <path d="M32 20v25" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="5 5"/>
+        <rect x="12" y="16" width="4" height="10" rx="1.2" fill="#5CB6F0" stroke="#2B6E9A" stroke-width="1"/>
+        <rect x="48" y="16" width="4" height="10" rx="1.2" fill="#5CB6F0" stroke="#2B6E9A" stroke-width="1"/>
+        <path d="M16 18h11M37 18h11" stroke="#D6F6FF" stroke-width="1.6" stroke-linecap="round" opacity=".8"/>
       </g>
     `);
   }
