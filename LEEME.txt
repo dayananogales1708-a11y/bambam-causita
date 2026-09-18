@@ -1,14 +1,9 @@
-BAMBAM CAUSITA · V43_LLENO_CONSUELO_POR_ORDEN
+BAMBAM CAUSITA — V58 con imágenes corregidas
 
-CORRECCIÓN DE CARTÓN LLENO Y CONSUELO
+- mascot.png = carita con fondo blanco (se ve dentro del encabezado de la app)
+- icon-192.png e icon-512.png = carita con fondo rojo (icono de la app instalada)
+- index.html = app V58
+- manifest.webmanifest = configuración PWA
+- sw.js = caché actualizado
 
-- Se conserva el orden en que los cartones completaron sus 24 números.
-- El primer cartón que SIGA lleno aparece en CARTÓN LLENO.
-- El segundo cartón que SIGA lleno aparece en CONSUELO.
-- Si el ganador de LLENO pierde una bola, el segundo sube automáticamente a LLENO.
-- Si existe un tercero que siga lleno, éste sube automáticamente a CONSUELO.
-- Si varios cartones pierden el lleno por la misma bola, se buscan los siguientes cartones completos en orden.
-- Si un cartón deja de estar lleno y después vuelve a completar sus 24 números, su nueva finalización pasa al final del orden.
-- Nunca se usa el mismo cartón para LLENO y CONSUELO.
-
-Se conservan TERNA, CUATERNA, las demás figuras, el diseño y los cartones propios de esta aplicación.
+Para GitHub: sube los 6 archivos de esta carpeta a la raíz del repositorio bambam-causita y confirma el commit.
